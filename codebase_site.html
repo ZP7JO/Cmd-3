@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<title>CodeBase — اشتراک کدهای کاربردی</title>
+<style>
+:root{--bg:#080808;--panel:rgba(20,20,20,.76);--orange:#ff7900;--orange2:#ffad42;--white:#f7f7f7;--muted:#aaa;--line:rgba(255,255,255,.11)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Tahoma,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:-3;background:radial-gradient(ellipse at 50% 10%,#341700 0,transparent 45%),radial-gradient(ellipse at 90% 65%,#211006 0,transparent 30%),#080808}
+#particles{position:fixed;inset:0;width:100%;height:100%;z-index:-2;pointer-events:none}
+.aurora{position:fixed;inset:-30%;z-index:-1;pointer-events:none;background:conic-gradient(from 0deg at 50% 50%,transparent 0 20%,rgba(255,103,0,.08) 28%,transparent 36% 55%,rgba(255,255,255,.035) 62%,transparent 72%);filter:blur(45px);animation:spin 28s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}@keyframes glow{0%,100%{box-shadow:0 0 15px #ff79002b}50%{box-shadow:0 0 34px #ff790075}}@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+a{color:inherit;text-decoration:none}.wrap{width:min(1160px,92%);margin:auto}
+header{position:sticky;top:0;z-index:20;background:rgba(8,8,8,.72);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:900;letter-spacing:-.5px}.logo{width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,var(--orange),#ffb24c);color:#111;display:grid;place-items:center;font-weight:1000;box-shadow:0 0 25px #ff790044}.brand span{color:var(--orange)}
+nav{display:flex;gap:24px;color:#ccc;font-size:14px}nav a:hover{color:var(--orange)}.nav-actions{display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:12px 18px;border-radius:12px;border:1px solid var(--line);background:#ffffff08;color:white;font-weight:700;cursor:pointer;transition:.25s;font-family:inherit}.btn:hover{transform:translateY(-2px);border-color:#ff7900aa}.btn.primary{background:linear-gradient(120deg,#ff6a00,#ff9d22);border:0;color:#17100a;box-shadow:0 8px 30px #ff790032}.menu{display:none}
+.hero{min-height:600px;display:grid;place-items:center;text-align:center;padding:90px 0 70px;position:relative}.eyebrow{display:inline-flex;gap:8px;align-items:center;border:1px solid #ff79004d;background:#ff790010;color:#ffad62;border-radius:999px;padding:9px 14px;font-size:12px;animation:rise .7s both}.dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange)}
+h1{font-size:clamp(42px,7vw,82px);line-height:1.18;letter-spacing:-2px;margin:25px 0 16px;font-weight:1000;animation:rise .8s .1s both}.gradient{background:linear-gradient(90deg,#fff 10%,#ffb25a 48%,#ff6900 80%);background-clip:text;color:transparent}.hero p{max-width:680px;margin:0 auto;color:#b9b9b9;line-height:2;font-size:17px;animation:rise .8s .2s both}.hero-buttons{display:flex;justify-content:center;gap:12px;margin-top:30px;flex-wrap:wrap;animation:rise .8s .3s both}.hero-orb{position:absolute;z-index:-1;width:min(460px,80vw);aspect-ratio:1;border:1px solid #ff79002c;border-radius:50%;top:65px;left:50%;transform:translateX(-50%);box-shadow:inset 0 0 70px #ff790008,0 0 80px #ff79000a;animation:float 7s ease-in-out infinite}.hero-orb:before,.hero-orb:after{content:"";position:absolute;inset:11%;border:1px dashed #ff8a2540;border-radius:50%;animation:spin 22s linear infinite}.hero-orb:after{inset:25%;border-style:solid;border-color:#fff1;animation-direction:reverse}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:-8px}.stat,.feature,.code-card,.join{border:1px solid var(--line);background:var(--panel);backdrop-filter:blur(14px);border-radius:18px}.stat{padding:20px;text-align:center}.stat strong{display:block;font-size:24px;color:var(--orange);margin-bottom:5px}.stat span{color:#aaa;font-size:13px}
+section{padding:82px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:26px}.section-head h2{margin:0;font-size:clamp(26px,4vw,38px)}.section-head p{color:var(--muted);margin:9px 0 0;line-height:1.8}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}.filter{padding:9px 14px;border-radius:10px;border:1px solid var(--line);background:#ffffff06;color:#ccc;cursor:pointer;font-family:inherit}.filter.active,.filter:hover{background:#ff790018;border-color:#ff790088;color:#ffad62}
+.code-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.code-card{padding:20px;transition:.25s;animation:rise .5s both}.code-card:hover{transform:translateY(-5px);border-color:#ff790078;animation:glow 2s infinite}.card-top{display:flex;justify-content:space-between;align-items:center;gap:10px}.tag{font-size:11px;padding:6px 9px;border-radius:8px;background:#ff790018;color:#ffad62;border:1px solid #ff79002b}.lang{color:#888;font-size:12px}.code-card h3{margin:18px 0 8px;font-size:17px}.code-card p{font-size:13px;line-height:1.9;color:#aaa;min-height:48px}.snippet{direction:ltr;text-align:left;background:#070707;border:1px solid #ffffff12;padding:14px;border-radius:12px;color:#ffc184;font:12px/1.8 Consolas,monospace;white-space:pre-wrap;overflow:auto;min-height:78px}.card-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:14px;color:#888;font-size:12px}.copy{border:0;background:#ff790018;color:#ffad62;border-radius:9px;padding:8px 11px;cursor:pointer;font-family:inherit}.copy:hover{background:#ff790033}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.feature{padding:22px}.feature-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;background:#ff79001a;color:var(--orange);font-size:22px}.feature h3{font-size:16px;margin:17px 0 8px}.feature p{color:#aaa;font-size:13px;line-height:1.9;margin:0}
+.join{padding:38px;display:flex;align-items:center;justify-content:space-between;gap:25px;background:linear-gradient(110deg,#ff790015,#fff 200%);border-color:#ff790032}.join h2{margin:0 0 10px}.join p{color:#aaa;line-height:1.8;margin:0}.join-actions{display:flex;gap:10px;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding:28px 0;color:#888;font-size:12px}.footer-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#f5f5f5;color:#111;padding:12px 18px;border-radius:12px;font-size:13px;transition:.25s;z-index:99}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:850px){nav{display:none}.menu{display:inline-flex}.code-grid{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.hero{min-height:540px}}
+@media(max-width:560px){.nav{height:66px}.brand{font-size:17px}.nav-actions .btn:not(.menu){display:none}.hero{padding:72px 0 55px}h1{letter-spacing:-1px}.hero p{font-size:15px}.stats{gap:8px}.stat{padding:14px 5px}.stat strong{font-size:19px}.stat span{font-size:11px}.code-grid,.features{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}.join{padding:25px;align-items:start;flex-direction:column}section{padding:60px 0}}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas><div class="aurora"></div>
+<header><div class="wrap nav">
+  <a class="brand" href="#"><div class="logo">&lt;/&gt;</div>Code<span>Base</span></a>
+  <nav><a href="#home">خانه</a><a href="#codes">کتابخانه کد</a><a href="#features">امکانات</a><a href="#community">مشارکت</a></nav>
+  <div class="nav-actions"><a class="btn" href="#codes">دیدن کدها ↙</a><button class="btn menu" onclick="document.querySelector('#codes').scrollIntoView({behavior:'smooth'})">کدها ☰</button></div>
+</div></header>
+<main>
+<section class="hero wrap" id="home">
+  <div class="hero-orb"></div>
+  <div>
+    <div class="eyebrow"><span class="dot"></span> فضای اشتراک کدهای کاربردی</div>
+    <h1>کدهای بهتر؛<br><span class="gradient">ایده‌های بزرگ‌تر.</span></h1>
+    <p>جایی برای پیدا کردن، یاد گرفتن و به اشتراک گذاشتن کدهای مفید. از اسنیپت‌های کوتاه تا ابزارهای کاربردی — همه‌چیز مرتب، قابل استفاده و آماده‌ی توسعه.</p>
+    <div class="hero-buttons"><a class="btn primary" href="#codes">مشاهده کتابخانه کد <span>↙</span></a><a class="btn" href="#community">چطور مشارکت کنم؟</a></div>
+  </div>
+</section>
+<div class="wrap stats">
+  <div class="stat"><strong>Code Hub</strong><span>کتابخانه‌ای برای کدهای مفید</span></div>
+  <div class="stat"><strong>Open Ideas</strong><span>یادگیری و همکاری جمعی</span></div>
+  <div class="stat"><strong>Clean &amp; Simple</strong><span>کدهای مرتب و قابل فهم</span></div>
+</div>
+<section class="wrap" id="codes">
+  <div class="section-head"><div><h2>نمونه‌های کاربردی</h2><p>برای شروع، چند اسنیپت نمونه گذاشته‌ایم؛ دکمه کپی، کد را در کلیپ‌بورد قرار می‌دهد.</p></div><span class="tag">DEMO LIBRARY</span></div>
+  <div class="filters"><button class="filter active" data-filter="all">همه</button><button class="filter" data-filter="web">وب</button><button class="filter" data-filter="js">JavaScript</button><button class="filter" data-filter="css">CSS</button></div>
+  <div class="code-grid" id="codeGrid">
+    <article class="code-card" data-category="js"><div class="card-top"><span class="tag">JavaScript</span><span class="lang">01 / JS</span></div><h3>کپی متن با یک کلیک</h3><p>برای دکمه‌های کپی متن، لینک یا کد در پروژه‌های وب.</p><pre class="snippet">async function copyText(text) {
+  await navigator.clipboard.writeText(text);
+}</pre><div class="card-bottom"><span>مناسب ابزارهای وب</span><button class="copy" data-copy="async function copyText(text) {&#10;  await navigator.clipboard.writeText(text);&#10;}">کپی کد ⧉</button></div></article>
+    <article class="code-card" data-category="css"><div class="card-top"><span class="tag">CSS</span><span class="lang">02 / CSS</span></div><h3>درخشش نارنجی</h3><p>یک افکت نور ملایم برای دکمه‌ها و کارت‌ها.</p><pre class="snippet">.glow {
+  box-shadow: 0 0 24px #ff790055;
+  transition: .25s ease;
+}</pre><div class="card-bottom"><span>ظاهر نئونی</span><button class="copy" data-copy=".glow {&#10;  box-shadow: 0 0 24px #ff790055;&#10;  transition: .25s ease;&#10;}">کپی کد ⧉</button></div></article>
+    <article class="code-card" data-category="web"><div class="card-top"><span class="tag">HTML / Web</span><span class="lang">03 / WEB</span></div><h3>لینک اسکرول نرم</h3><p>با کلیک روی لینک‌ها به بخش موردنظر آرام حرکت کن.</p><pre class="snippet">html {
+  scroll-behavior: smooth;
+}</pre><div class="card-bottom"><span>بدون JavaScript</span><button class="copy" data-copy="html {&#10;  scroll-behavior: smooth;&#10;}">کپی کد ⧉</button></div></article>
+  </div>
+</section>
+<section class="wrap" id="features">
+  <div class="section-head"><div><h2>چرا این فضا؟</h2><p>برای اینکه کد خوب فقط نوشته نشود؛ پیدا شود، فهمیده شود و بهتر شود.</p></div></div>
+  <div class="features">
+    <div class="feature"><div class="feature-icon">⌘</div><h3>کدهای مرتب</h3><p>نمونه‌ها را با عنوان، زبان و توضیح کوتاه دسته‌بندی کن.</p></div>
+    <div class="feature"><div class="feature-icon">✦</div><h3>ظاهر مدرن</h3><p>پس‌زمینه متحرک، نورهای نارنجی و رابط تیره و خوانا.</p></div>
+    <div class="feature"><div class="feature-icon">⧉</div><h3>کپی سریع</h3><p>کدهای نمونه را با یک کلیک کپی و در پروژه خودت امتحان کن.</p></div>
+    <div class="feature"><div class="feature-icon">↗</div><h3>رشد جمعی</h3><p>ساختار آماده برای اضافه‌کردن کدها و مشارکت کاربران.</p></div>
+  </div>
+</section>
+<section class="wrap" id="community"><div class="join"><div><h2>یه کد مفید داری؟</h2><p>این نسخه فعلاً نمایشی و فرانت‌اند است. برای ارسال واقعی کدها، حساب کاربری و ذخیره‌سازی مشترک، باید بک‌اند یا سرویس دیتابیس اضافه شود.</p></div><div class="join-actions"><a class="btn primary" href="#codes">شروع از نمونه‌ها</a><button class="btn" onclick="alert('برای فعال‌کردن ارسال کد، باید بک‌اند یا دیتابیس به سایت متصل شود.')">ارسال کد +</button></div></div></section>
+</main>
+<footer><div class="wrap footer-row"><span>© 2026 CodeBase — فضای اشتراک کدهای کاربردی</span><span>ساخته‌شده با HTML، CSS و JavaScript</span></div></footer>
+<div class="toast" id="toast">کد کپی شد ✓</div>
+<script>
+document.querySelectorAll('.copy').forEach(btn=>btn.addEventListener('click',async()=>{
+ const text=btn.dataset.copy.replace(/&#10;/g,'\n');
+ try{await navigator.clipboard.writeText(text);showToast('کد کپی شد ✓')}
+ catch(e){const area=document.createElement('textarea');area.value=text;document.body.appendChild(area);area.select();document.execCommand('copy');area.remove();showToast('کد کپی شد ✓')}
+}));
+document.querySelectorAll('.filter').forEach(btn=>btn.addEventListener('click',()=>{
+ document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+ document.querySelectorAll('.code-card').forEach(card=>card.style.display=btn.dataset.filter==='all'||card.dataset.category===btn.dataset.filter?'':'none');
+}));
+let toastTimer;function showToast(text){const t=document.getElementById('toast');t.textContent=text;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),1800)}
+// Lightweight animated orange/white particles, no external libraries.
+const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');let w,h,pts=[];
+function resize(){w=canvas.width=innerWidth*devicePixelRatio;h=canvas.height=innerHeight*devicePixelRatio;canvas.style.width=innerWidth+'px';canvas.style.height=innerHeight+'px';pts=Array.from({length:Math.min(100,Math.floor(innerWidth/14))},()=>({x:Math.random()*w,y:Math.random()*h,r:(Math.random()*1.7+.4)*devicePixelRatio,v:(Math.random()*.35+.08)*devicePixelRatio,a:Math.random()*.6+.15,c:Math.random()>.23?'255,121,0':'255,255,255'}))}
+function draw(){ctx.clearRect(0,0,w,h);for(const p of pts){p.y-=p.v;if(p.y<-10)p.y=h+10;ctx.beginPath();ctx.fillStyle=`rgba(${p.c},${p.a})`;ctx.shadowBlur=12*devicePixelRatio;ctx.shadowColor=`rgba(${p.c},.55)`;ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill()}requestAnimationFrame(draw)}
+addEventListener('resize',resize);resize();draw();
+</script>
+</body>
+</html>
